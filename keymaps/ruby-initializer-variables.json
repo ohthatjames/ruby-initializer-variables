@@ -1,5 +1,5 @@
 {
   "atom-workspace": {
-    "ctrl-cmd-d": "ruby-initializer-variables:define"
+    "ctrl-alt-cmd-d": "ruby-initializer-variables:define"
   }
 }

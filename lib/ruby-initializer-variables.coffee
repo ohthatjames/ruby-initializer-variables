@@ -31,4 +31,8 @@ module.exports =
     indentation = " ".repeat(indentationSize)
 
   variableName: (variable) ->
-    variable.trim()
+    variable = variable.trim()
+    if variable.indexOf('=') > 0
+      variable.substring(0, variable.indexOf('=')).trim()
+    else
+      variable

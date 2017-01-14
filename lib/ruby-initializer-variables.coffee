@@ -14,12 +14,16 @@ module.exports =
   deactivate: ->
     @subscriptions.dispose()
 
-
   defineVariables: ->
     if editor = atom.workspace.getActiveTextEditor()
-      selection = editor.getSelectedText()
-      variables = selection.split(',')
+      selection = editor.getSelectedBufferRange()
+      selectionText = editor.getSelectedText()
+      variables = selectionText.split(',')
+      initialRow = selection.start.row
+      initialRowText = editor.lineTextForBufferRow(initialRow)
+      indentationSize = initialRowText.match(/\s*/)[0].length + 2
+      indentation = " ".repeat(indentationSize)
       editor.moveToEndOfLine()
       for variable in variables
         variable = variable.trim()
-        editor.insertText("\n  @" + variable + " = " + variable)
+        editor.insertText("\n" + indentation + "@" + variable + " = " + variable)

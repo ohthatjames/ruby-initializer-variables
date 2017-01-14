@@ -26,3 +26,13 @@ describe "waiting for the packages to load", ->
         \n  @arg1 = arg1\
         \n  @arg2 = arg2\
         \nend"
+
+  it 'respects the initial indentation', ->
+    body = "  def initialize(arg1, arg2)\n  end"
+    editor.setText(body)
+    editor.setSelectedBufferRange([[0, body.indexOf("arg1")], [0, body.indexOf(")")]])
+    executeCommand ->
+      expect(editor.getText()).toEqual "  def initialize(arg1, arg2)\
+        \n    @arg1 = arg1\
+        \n    @arg2 = arg2\
+        \n  end"

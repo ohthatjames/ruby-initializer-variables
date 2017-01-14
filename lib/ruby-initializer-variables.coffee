@@ -16,4 +16,10 @@ module.exports =
 
 
   defineVariables: ->
-    console.log('Hello world!')
+    if editor = atom.workspace.getActiveTextEditor()
+      selection = editor.getSelectedText()
+      variables = selection.split(',')
+      editor.moveToEndOfLine()
+      for variable in variables
+        variable = variable.trim()
+        editor.insertText("\n  @" + variable + " = " + variable)

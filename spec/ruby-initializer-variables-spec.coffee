@@ -8,5 +8,21 @@ describe "waiting for the packages to load", ->
     waitsForPromise -> activationPromise
     runs(callback)
 
-  it 'works', ->
-    expect(1).toEqual(1)
+  beforeEach ->
+    waitsForPromise ->
+      atom.workspace.open()
+
+    runs ->
+      editor = atom.workspace.getActiveTextEditor()
+      workspaceElement = atom.views.getView(atom.workspace)
+      activationPromise = atom.packages.activatePackage('ruby-initializer-variables')
+
+  it 'creates instance variables for the selected arguments', ->
+    body = "def initialize(arg1, arg2)\nend"
+    editor.setText(body)
+    editor.setSelectedBufferRange([[0, body.indexOf("arg1")], [0, body.indexOf(")")]])
+    executeCommand ->
+      expect(editor.getText()).toEqual "def initialize(arg1, arg2)\
+        \n  @arg1 = arg1\
+        \n  @arg2 = arg2\
+        \nend"

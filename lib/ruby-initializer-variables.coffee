@@ -21,11 +21,14 @@ module.exports =
       indentation = @indentationForSelection(editor, editor.getSelectedBufferRange())
       editor.moveToEndOfLine()
       for variable in variables
-        variable = variable.trim()
-        editor.insertText("\n" + indentation + "@" + variable + " = " + variable)
+        variableName = @variableName(variable)
+        editor.insertText("\n" + indentation + "@" + variableName + " = " + variableName)
 
   indentationForSelection: (editor, selection) ->
     initialRow = selection.start.row
     initialRowText = editor.lineTextForBufferRow(initialRow)
     indentationSize = initialRowText.match(/\s*/)[0].length + 2
     indentation = " ".repeat(indentationSize)
+
+  variableName: (variable) ->
+    variable.trim()

@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Define Ruby initializer variables",
+        "command": "ruby-initializer-variables:define"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Ruby initializer variables",
+          "submenu": [
+            {
+              "label": "Define",
+              "command": "ruby-initializer-variables:define"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

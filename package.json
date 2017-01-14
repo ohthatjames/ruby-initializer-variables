@@ -1,0 +1,18 @@
+{
+  "name": "ruby-initializer-variables",
+  "main": "./lib/ruby-initializer-variables",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "ruby-initializer-variables:define"
+  },
+  "repository": "https://github.com/atom/ruby-initializer-variables",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

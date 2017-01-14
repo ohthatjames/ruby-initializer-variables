@@ -34,5 +34,7 @@ module.exports =
     variable = variable.trim()
     if variable.indexOf('=') > 0
       variable.substring(0, variable.indexOf('=')).trim()
+    else if variable.indexOf(':') > 0
+      variable.substring(0, variable.indexOf(':')).trim()
     else
       variable
